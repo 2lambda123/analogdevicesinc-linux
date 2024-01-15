@@ -215,7 +215,7 @@ struct axiadc_chip_info {
 };
 
 struct axiadc_converter {
-	struct spi_device 	*spi;
+	struct device *dev;
 	struct clk 		*clk;
 	struct clock_scale		adc_clkscale;
 	struct clk		*lane_clk;
@@ -294,6 +294,8 @@ struct axiadc_converter {
 	int (*post_iio_register)(struct iio_dev *indio_dev);
 	int (*set_pnsel)(struct iio_dev *indio_dev, unsigned chan,
 			enum adc_pn_sel sel);
+	int (*update_scan_mode)(struct iio_dev *indio_dev,
+				const unsigned long *scan_mask);
 };
 
 
