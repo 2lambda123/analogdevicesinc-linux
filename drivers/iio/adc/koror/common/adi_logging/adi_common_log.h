@@ -25,6 +25,10 @@
 #include "adi_common_error_types.h"
 #include "adi_common_types.h"
 
+#ifdef __KERNEL__
+#define ADI_FILE    1
+#endif
+
 /**
 * \brief Macro to Log API function entry
 * 
