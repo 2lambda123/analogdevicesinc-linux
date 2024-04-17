@@ -10,6 +10,7 @@
 * 
 * ADI common lib Version: 0.0.2.1
 */
+
 #ifndef _ADI_COMMON_USER_H_
 #define _ADI_COMMON_USER_H_
 
@@ -22,7 +23,11 @@
 #endif /* Variable Name String Conversion Flag */
 
 #ifndef ADI_COMMON_ERROR_VARIABLE_TYPE
+#ifndef __KERNEL__
     #define ADI_COMMON_ERROR_VARIABLE_TYPE  (int64_t) (intptr_t)
+#else
+    #define ADI_COMMON_ERROR_VARIABLE_TYPE  (int64_t) (long int)
+#endif
 #endif /* Error Reporting Variable Data Type */
 
 #ifndef ADI_COMMON_LOG_ERR_INDENT1
