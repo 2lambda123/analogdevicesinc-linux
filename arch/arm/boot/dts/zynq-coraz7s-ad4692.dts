@@ -1,0 +1,46 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Analog Devices AD4692
+ * https://www.analog.com/en/products/ad4692.html
+ *
+ * Copyright (C) 2024 Analog Devices Inc.
+ */
+/dts-v1/;
+#include "zynq-coraz7s.dtsi"
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+
+	vref: regulator-vref {
+		compatible = "regulator-fixed";
+		regulator-name = "fixed-supply";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		regulator-always-on;
+	};
+
+	vio: regulator-vio {
+		compatible = "regulator-fixed";
+		regulator-name = "fixed-supply";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-always-on;
+	};
+};
+
+&spi0 {
+	status = "okay";
+
+	spi_clasic_ad4692@0 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "adi,ad4692";
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+		adi,spi-mode = <2>;
+		vref-supply = <&vref>;
+		vio-supply = <&vio>;
+	};
+};
+
